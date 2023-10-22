@@ -1,0 +1,12 @@
+asgiref==3.7.2
+certifi==2023.7.22
+Django==4.2.6
+djangorestframework==3.14.0
+dnspython==2.4.2
+mongoengine==0.27.0
+pymongo==3.12.3
+python-decouple==3.8
+python-dotenv==1.0.0
+pytz==2023.3.post1
+sqlparse==0.4.4
+typing_extensions==4.8.0
