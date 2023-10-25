@@ -89,6 +89,11 @@ MONGO_DB_NAME = config("MONGO_DB_NAME")
 MONGO_DB_URI = config("MONGO_DB_URI")
 mongoengine.connect(host=MONGO_DB_URI+"/"+MONGO_DB_NAME,ssl_ca_certs=certifi.where())
 
+JWT_SECRET = config("JWT_SECRET")
+
+JWT_ALGORITHM = config("JWT_ALGORITHM")
+
+ENCODE_ALGORITHM = config("ENCODE_ALGORITHM")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
