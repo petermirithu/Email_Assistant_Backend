@@ -19,19 +19,20 @@ def sign_up_user(request):
         first_name = data['firstName']                  
         last_name = data['lastName']
         email = data['email']
-        password = data['password'] 
-        email_provider = data["email_provider"]
-                 
+        password = data['password']         
+
         taken=check_if_email_taken(email)
+        
         if taken==True:            
             return Response('emailTaken', status=status.HTTP_423_LOCKED)
-        else:                                
+        else:                        
+                            
             hashed_password = hash_password(password)                
             new_user = Users(
                         first_name=first_name,
                         last_name=last_name,
-                        email=email,
-                        email_provider=email_provider,
+                        email=email,   
+                        email_provider="gmail",
                         password=str(hashed_password),                            
                         created_at=getTimeNow()
                         )

@@ -87,6 +87,7 @@ REST_FRAMEWORK = {
 
 MONGO_DB_NAME = config("MONGO_DB_NAME")
 MONGO_DB_URI = config("MONGO_DB_URI")
+
 mongoengine.connect(host=MONGO_DB_URI+"/"+MONGO_DB_NAME,ssl_ca_certs=certifi.where())
 
 JWT_SECRET = config("JWT_SECRET")
