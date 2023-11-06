@@ -14,10 +14,11 @@ class Users(Document):
 
 class Emails(Document):     
     user_id = ReferenceField(Users, reverse_delete_rule=CASCADE)      
+    message_id = StringField(required=True)
     subject=StringField(required=True)
     from_email=StringField(required=True)
     read=BooleanField(default=False)
-    key_points=StringField(required=True)            
+    body=StringField(required=True)                        
     created_at=DateTimeField(required=True)
     updated_at=DateTimeField(default=datetime.datetime.utcnow)
 

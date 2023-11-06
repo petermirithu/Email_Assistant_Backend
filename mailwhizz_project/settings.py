@@ -96,6 +96,11 @@ JWT_ALGORITHM = config("JWT_ALGORITHM")
 
 ENCODE_ALGORITHM = config("ENCODE_ALGORITHM")
 
+OPEN_AI_API_KEY = config("OPEN_AI_API_KEY") 
+ 
+OPEN_AI_CHAT_MODEL = config("OPEN_AI_CHAT_MODEL")
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
