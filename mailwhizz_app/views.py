@@ -94,19 +94,20 @@ def process_email(request):
     try:        
         user_id = data["userId"]                                                                                                                              
         subject = data["subject"]   
-        from_email = data["from_email"]
+        from_email = data["fromEmail"]
         email_body = data["body"]   
+        email_body_html = data["htmlBody"]           
         message_id = data["messageId"]         
                         
         try:
             Emails.objects.get(message_id=message_id)            
-        except Emails.DoesNotExist:   
+        except Emails.DoesNotExist:              
             email = Emails(
                 message_id=message_id,   
                 user_id=user_id,
                 subject=subject,
-                from_email=from_email,
-                body=email_body,
+                from_email=from_email,                
+                body=email_body_html,
                 created_at=getTimeNow()
             )
             email.save()
@@ -117,7 +118,8 @@ def process_email(request):
                     task = Tasks(
                         title=item["task"],
                         category=item["category"],
-                        email_id=email.id,                                                                          
+                        email_id=email.id,      
+                        user_id=user_id,                                                                    
                         created_at=getTimeNow()
                         )
                     task.save()  
@@ -135,11 +137,11 @@ def process_email(request):
 @permission_classes([isAuthorized])
 def fetch_processed_emails(request, user_id):     
     try:
-        emails = Emails.objects.filter(user_id=user_id)   
-        serialised_emails = EmailsSerializer(emails, many=True)                                        
-
-        tasks = Tasks.objects.filter(user_id=user_id)   
-        serialised_tasks = TasksSerializer(emails, many=True)  
+        emails = Emails.objects.filter(user_id=user_id).order_by("-updated_at")      
+        serialised_emails = EmailsSerializer(emails, many=True)
+        
+        tasks = Tasks.objects.filter(user_id=user_id).order_by("-updated_at")
+        serialised_tasks = TasksSerializer(tasks, many=True)        
 
         results = {
             "emails": serialised_emails.data,

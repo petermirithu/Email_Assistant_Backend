@@ -22,7 +22,7 @@ class Assistant():
     def extract_tasks_from_email(email_body):            
         # messages = [
         #     SystemMessage(
-        #         content="You are a helpful assistant who extracts tasks required or key points from an email. The tasks/key points you extract MUST be a string separated by a comma with the task title and task category which can either: be high priority, Deadline, Critical, or Urgent. Tasks should be in format:  task title here - task category here. For example:- Submit financial report - Deadline, Call Mr. John - Urgent. DO NOT use this examples to generate the tasks / key points!"
+        #         content="You are a helpful assistant who extracts tasks required or key points from an email. The tasks/key points you extract MUST be a string separated by a comma with the task title and task category which can either be: High Priority, Deadline, Critical, Reminder or Urgent. Tasks should be in format:  task title here - task category here. For example:- Submit financial report - Deadline, Call Mr. John - Urgent. DO NOT use this examples to generate the tasks / key points!"
         #     ),
         #     HumanMessage(content=f"""Generate tasks from the following email body. Adhere to the instructions given above.
         #                 **************************
