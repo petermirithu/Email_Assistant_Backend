@@ -218,4 +218,57 @@ def generate_mail_summary(request):
         print("**********************************************************")                                 
         return Response("An error occured while generating mail summary", status=status.HTTP_400_BAD_REQUEST)              
 
+   
+@api_view(['PUT'])
+@permission_classes([isAuthorized])
+def update_task_status(request):
+    data = json.loads(request.body)  
+    try:
+        task_id = data["taskId"]   
+        task_status = data["taskStatus"] 
+                
+        Tasks.objects.get(id=task_id).update(done=task_status)
+
+        return Response("Task status saved!!!", status=status.HTTP_200_OK)
+    except Exception as error:                            
+        # Unmuted to see full error !!!!!!!!!
+        print("**********************************************************")
+        print(traceback.format_exc())           
+        print("**********************************************************")                                 
+        return Response("An error occured while marking task as done / undone", status=status.HTTP_400_BAD_REQUEST)                
     
+@api_view(['PUT'])
+@permission_classes([isAuthorized])
+def update_email_status(request):
+    data = json.loads(request.body)  
+    try:
+        email_id = data["emailId"]   
+        email_read = data["emailRead"] 
+
+        Emails.objects.get(id=email_id).update(read=email_read)
+
+        return Response("Email status saved!!!", status=status.HTTP_200_OK)
+    except Exception as error:                            
+        # Unmuted to see full error !!!!!!!!!
+        print("**********************************************************")
+        print(traceback.format_exc())           
+        print("**********************************************************")                                 
+        return Response("An error occured while marking email as read / unread", status=status.HTTP_400_BAD_REQUEST)                
+
+@api_view(['PUT'])
+@permission_classes([isAuthorized])
+def update_attachment_status(request):
+    data = json.loads(request.body)  
+    try:
+        attachment_id = data["attachmentId"]   
+        attachment_read = data["attachmentRead"] 
+
+        Attachments.objects.get(id=attachment_id).update(read=attachment_read)
+
+        return Response("Attachment status saved!!!", status=status.HTTP_200_OK)
+    except Exception as error:                            
+        # Unmuted to see full error !!!!!!!!!
+        print("**********************************************************")
+        print(traceback.format_exc())           
+        print("**********************************************************")                                 
+        return Response("An error occured while marking attachment as read / unread", status=status.HTTP_400_BAD_REQUEST)                
