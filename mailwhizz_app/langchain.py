@@ -85,7 +85,7 @@ class Assistant():
     def generate_reply_suggestion_from_mail(text_to_process, option):
         format_instruction = ""
         if option == "attachment":
-           format_instruction = "Your response should be in html format! Utilize html tags such as p tags to show paragraphs and other html elements to make the reply beautiful. Do not add any additional text outside the body."
+           format_instruction = "Your response should be in html format! Utilize html tags such as p tags to show paragraphs and other html elements to make the reply beautiful. Do not add any additional text outside the body. DO not type html anywhere!"
 
         messages = [
             SystemMessage(
@@ -106,7 +106,7 @@ class Assistant():
     def generate_summary_from_mail(email_body):
         messages = [
             SystemMessage(
-                content="You are a helpful assistant who generates a summary from the text provided. Your response should be in html format! Utilize html tags such as p tags to show paragraphs and other html elements to make the summary beautiful."
+                content="You are a helpful assistant who generates a summary from the text provided. Your response should be in html format! Utilize html tags such as p tags to show paragraphs and other html elements to make the summary beautiful. DO not type html anywhere!"
             ),
             HumanMessage(content=f"""Generate a summary from the following text. Follow the instructions given above! Do NOT return the same text given below. Generate your own summary that is brief and straight to the point based on the text provided.
                         **************************
